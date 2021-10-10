@@ -109,6 +109,12 @@ Route::get('qlist',[ProductController::class,'Operations']);
 
 Route::get('joindata',[ProductController::class,'showAllData']);
 
+//Accessor
+
+Route::get('dataaccess',[ProductController::class,'getaccess']);
+
+Route::get('datamutate',[ProductController::class,'getaccess']);
+
 Route::get('/logout',function(){
   if(session()->has('user')){
 

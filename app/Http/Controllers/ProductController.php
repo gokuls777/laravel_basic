@@ -103,6 +103,18 @@ class ProductController extends Controller
 
   }
 
+  function getaccess(){
+    return product::all();
+  }
+
+  function mutatdata(){
+    $data = new product;
+    $data->title = "Cricket Bat";
+    $data->category = "sports";
+    $data->amount = "500.20";
+    $data->save();
+  }
+
 
 
 
