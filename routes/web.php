@@ -7,6 +7,7 @@ use App\Http\Controllers\htmlController;
 use App\Http\Controllers\AddMember;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\MainController;
 
 
 /*
@@ -113,7 +114,39 @@ Route::get('joindata',[ProductController::class,'showAllData']);
 
 Route::get('dataaccess',[ProductController::class,'getaccess']);
 
-Route::get('datamutate',[ProductController::class,'getaccess']);
+Route::get('datamutate',[ProductController::class,'mutatdata']);
+
+
+//1 to 1 relation
+
+Route::get("relation",[ProductController::class,'relateData']);
+
+//Route Model Binding
+
+Route::get("bindShow/{key.title}",[ProductController::class,'bindData']);
+
+//AUTH
+
+Route::get('/auth/login',[MainController::class,'login']);
+
+Route::get('/auth/register',[MainController::class,'Register']);
+
+Route::post('/auth/save',[MainController::class,'userRegister']);
+
+Route::post('/auth/Check',[MainController::class,'userCheck']);
+
+
+
+Route::get('/auth/logout',[MainController::class,'logout']);
+
+Route::group(['middleware'=>['AuthCheck']],function(){
+
+   Route::get('/admin/dashboard',[MainController::class,'dashboard']);
+   Route::get('/auth/login',[MainController::class,'login']);
+
+   Route::get('/auth/register',[MainController::class,'Register']);
+
+});
 
 Route::get('/logout',function(){
   if(session()->has('user')){

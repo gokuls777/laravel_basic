@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\product;
+use App\Models\post;
 
 class ProductController extends Controller
 {
@@ -108,15 +109,23 @@ class ProductController extends Controller
   }
 
   function mutatdata(){
+
     $data = new product;
     $data->title = "Cricket Bat";
     $data->category = "sports";
     $data->amount = "500.20";
     $data->save();
+
   }
 
+  function relateData(){
+    
+  return product::find(5)->getPost;
 
+  }
 
-
+  function bindData(product $key){
+    return $key;
+  }
     
 }
